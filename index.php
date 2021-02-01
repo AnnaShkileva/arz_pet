@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="css/main.css">
+    <?php require 'blocks/head.php'?>
 </head>
 <body>
    <?php require 'blocks/header.php'?>

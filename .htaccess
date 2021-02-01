@@ -1,3 +1,7 @@
 ServerSignature Off
 AddDefaultCharset UTF-8 
 ErrorDocument 404 /pet/error.php
+ErrorDocument 400 /pet/error.php
+
+#замена url
+# RewriteRule ^reg?$ registration.php [NC, L]

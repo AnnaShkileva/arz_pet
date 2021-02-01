@@ -4,6 +4,7 @@
   <!-- <a class="p-2 text-dark" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Возможности </font></font></a>
     -->
   </nav>
+  <a href="./index.php">На Главную</a>
   <a class="btn btn-outline-primary" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Войти</font></font></a>
-  <a class="btn btn-outline-primary" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></a>
+  <a class="btn btn-outline-primary" href="./registration.php"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></a>
 </header>
