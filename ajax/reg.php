@@ -13,7 +13,7 @@ else if(strlen($email) <=3)
     $error = 'email';
 else if(!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email))
     $error = 'корректный email';
-else if(strlen($login) <=3)
+else if(strlen($login) <=2)
     $error = 'login';
 else if(strlen($pass) <=3)
     $error = 'пароль';
@@ -25,13 +25,8 @@ if($error != ''){
 $hash = "bI3v92inb7fgyDG56Hj";
 $pass = md5($pass . $hash);
 
-$user = 'root';
-$password = 'root';
-$db = 'arz_pet';
-$host = 'localhost';
+require_once '../db_connect.php';
 
-$dsn = 'mysql:host=' . $host . ';dbname=' . $db;
-$pdo = new PDO($dsn, $user, $password);
 $sql = 'INSERT INTO users(name, email, login, pass) VALUES(?, ?, ?, ?)';
 $query = $pdo->prepare($sql);
 $query->execute([$username, $email, $login, $pass]);

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация на сайте</title>
+    <title>Авторизация на сайте</title>
     <?php require 'blocks/head.php'?>
 </head>
 
@@ -13,14 +13,8 @@
     <main class="container mt-5">
         <div class="row">
             <div class="col-md-8 mb-3">
-                <h4>Форма регистрации</h4>
+                <h4>Авторизация</h4>
                 <form>
-                    <label for="username">Ваше имя</label>
-                    <input type="text" name="username" id="username" class="form-control">
-
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control">
-
                     <label for="login">Логин</label>
                     <input type="text" name="login" id="login" class="form-control">
 
@@ -28,7 +22,7 @@
                     <input type="password" name="pass" id="pass" class="form-control">
 
                     <div class="alert alert-danger mt-2" id="errorBlock"></div>
-                    <button type="button" id="reg_user" class="btn btn-success mt-5">Зарегистрироваться</button>
+                    <button type="button" id="auth_user" class="btn btn-success mt-5">Войти</button>
 
                 </form>
             </div>
@@ -38,20 +32,16 @@
 
     <?php require 'blocks/footer.php'?>
     <script>
-        $('#reg_user').on('click', function(e) {
+        $('#auth_user').on('click', function(e) {
             e.preventDefault();
-            var name = $('#username').val();
-            var email = $('#email').val();
             var login = $('#login').val();
             var pass = $('#pass').val();
 
             $.ajax({
-                url: 'ajax/reg.php',
+                url: 'ajax/auth.php',
                 type: 'POST',
                 cache: false,
                 data: {
-                    'username': name,
-                    'email': email,
                     'login': login,
                     'pass': pass
                 },
@@ -62,7 +52,7 @@
                         $('#errorBlock').hide();
                     } else {
                         $('#errorBlock').show();
-                        $('#errorBlock').text('Введите ' + data);
+                        $('#errorBlock').text(data);
 
                     }
 
