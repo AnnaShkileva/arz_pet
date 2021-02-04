@@ -26,11 +26,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();
     };
     
-    $hash = "bI3v92inb7fgyDG56Hj";
+    $hash = "bI3v9";
     $pass = md5($pass . $hash);
     
     $query = $mysqli->query("INSERT INTO `users` (`name`, `email`, `pass`) VALUES('" . $name . "', '" . $email . "', '" . $pass . "')") or die("Ошибка регистрации нового пользователя! Обратитесь к администраторую");    
-    echo "true";
+    echo true;
         
 };
 

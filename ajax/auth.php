@@ -22,23 +22,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();
     }
 
-    $hash = "bI3v92inb7fgyDG56Hj";
+    $hash = "bI3v9";
     $pass = md5($pass . $hash);
-/*
-    $sql = 'SELECT `id` FROM `users` WHERE `login` = ? && `pass` = ?';
-    $query = $pdo->prepare($sql);
-    $query->execute([$login, $pass]);
+    $query = $mysqli->query("SELECT * FROM `users` WHERE `email` = '". $email ."' && `pass` = '" . $pass . "'") or die("Ошибка авторизации! Обратитесь к администратору.");    
+    
+    $user = $query->fetch_array();
+    $id = $user['id'];
 
-    $user = $query->fetch(PDO::FETCH_OBJ);
-    */
-    $query = $mysqli->query("SELECT `id` FROM `users` WHERE `email` = `". $email ."` && `pass` = `" . $pass . "`") or die("Ошибка авторизации! Обратитесь к администраторую");    
-    echo "true";
-
-    if($user->id == 0)
+    if($id == 0)
         echo 'Неверный email или пароль!';
     else{
-        setcookie('log', $user, time() + 3600 * 24 * 365);
-        echo true;
+        setcookie('log', $id, time() + 3600 * 24 * 365);
+        echo "true";
     };
 };
 ?>

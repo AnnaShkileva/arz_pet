@@ -47,8 +47,8 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    if (data == true) {
-                        $('#reg_user').text('Готово!');
+                    if (data == "true") {
+                        $('#auth_user').text('Готово!');
                         $('#errorBlock').hide();
                     } else {
                         $('#errorBlock').show();

@@ -52,7 +52,7 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    if (data == "true") {
+                    if (data == true) {
                         $('#reg_user').text('Готово!');
                         $('#errorBlock').hide();
                     } else {
