@@ -15,8 +15,8 @@
             <div class="col-md-8 mb-3">
                 <h4>Авторизация</h4>
                 <form>
-                    <label for="login">Логин</label>
-                    <input type="text" name="login" id="login" class="form-control">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control">
 
                     <label for="pass">Пароль</label>
                     <input type="password" name="pass" id="pass" class="form-control">
@@ -34,7 +34,7 @@
     <script>
         $('#auth_user').on('click', function(e) {
             e.preventDefault();
-            var login = $('#login').val();
+            var email = $('#email').val();
             var pass = $('#pass').val();
 
             $.ajax({
@@ -42,7 +42,7 @@
                 type: 'POST',
                 cache: false,
                 data: {
-                    'login': login,
+                    'email': email,
                     'pass': pass
                 },
                 dataType: 'html',

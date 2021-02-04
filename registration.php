@@ -21,9 +21,6 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control">
 
-                    <label for="login">Логин</label>
-                    <input type="text" name="login" id="login" class="form-control">
-
                     <label for="pass">Пароль</label>
                     <input type="password" name="pass" id="pass" class="form-control">
 
@@ -42,7 +39,6 @@
             e.preventDefault();
             var name = $('#username').val();
             var email = $('#email').val();
-            var login = $('#login').val();
             var pass = $('#pass').val();
 
             $.ajax({
@@ -52,17 +48,16 @@
                 data: {
                     'username': name,
                     'email': email,
-                    'login': login,
                     'pass': pass
                 },
                 dataType: 'html',
                 success: function(data) {
-                    if (data == true) {
+                    if (data == "true") {
                         $('#reg_user').text('Готово!');
                         $('#errorBlock').hide();
                     } else {
                         $('#errorBlock').show();
-                        $('#errorBlock').text('Введите ' + data);
+                        $('#errorBlock').text(data);
 
                     }
 

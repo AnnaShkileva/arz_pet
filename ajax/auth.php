@@ -1,34 +1,44 @@
 <?php
-$login = trim(filter_var($_POST['login'], FILTER_SANITIZE_STRING));
-$pass = trim(filter_var($_POST['pass'], FILTER_SANITIZE_STRING));
 
-$error = '';
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  
+    include "../db_connect.php";
+    
+    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+    $pass = trim(filter_var($_POST['pass'], FILTER_SANITIZE_STRING));
 
-if(strlen($login) <=2)
-    $error = 'Введите login';
-else if(strlen($pass) <=3)
-    $error = 'Введите пароль';
-if($error != ''){
-    echo $error;
-    exit();
-}
+    $error = '';
 
-$hash = "bI3v92inb7fgyDG56Hj";
-$pass = md5($pass . $hash);
+    if(strlen($email) <=3)
+        $error = 'Введите email';
+    else if(!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email))
+        $error = 'Введите корректный email';
+    else if(strlen($pass) <=1)
+        $error = 'Введите пароль';
+    else if(preg_match("#^[a-z0-9\-_]+$/i#",$pass)|| strlen($pass) <=4)
+            $error = 'Пароль должен состоять минимум из 5 латинских символов и цифр';
+    if($error != ''){
+        echo $error;
+        exit();
+    }
 
-require_once '../db_connect.php';
+    $hash = "bI3v92inb7fgyDG56Hj";
+    $pass = md5($pass . $hash);
+/*
+    $sql = 'SELECT `id` FROM `users` WHERE `login` = ? && `pass` = ?';
+    $query = $pdo->prepare($sql);
+    $query->execute([$login, $pass]);
 
-$sql = 'SELECT `id` FROM `users` WHERE `login` = ? && `pass` = ?';
-$query = $pdo->prepare($sql);
-$query->execute([$login, $pass]);
+    $user = $query->fetch(PDO::FETCH_OBJ);
+    */
+    $query = $mysqli->query("SELECT `id` FROM `users` WHERE `email` = `". $email ."` && `pass` = `" . $pass . "`") or die("Ошибка авторизации! Обратитесь к администраторую");    
+    echo "true";
 
-$user = $query->fetch(PDO::FETCH_OBJ);
-
-echo $user;
-/*if($user->id == 0)
-    echo 'Неверный логин или пароль!';
-else{
-    setcookie('log', $login, time() + 3600 * 24 * 365);
-    echo true;
-};*/
+    if($user->id == 0)
+        echo 'Неверный email или пароль!';
+    else{
+        setcookie('log', $user, time() + 3600 * 24 * 365);
+        echo true;
+    };
+};
 ?>
