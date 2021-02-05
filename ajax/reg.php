@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     else if(!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email))
         $error = 'Введите корректный email';
     else if(strlen($pass) <=1)
-        $error = 'Введите пароль ';
+        $error = 'Введите пароль';
     else if(preg_match("#^[a-z0-9\-_]+$/i#",$pass)|| strlen($pass) <=4)
         $error = 'Пароль должен состоять минимум из 5 латинских символов и цифр';
     if($error != ''){

@@ -26,7 +26,8 @@
     <a class="btn btn-outline-primary" href="./ajax/exit.php">
         <font style="vertical-align: inherit;">
             <font style="vertical-align: inherit;">
-                <?= $_SESSION['auth_name']?>
+                <?= $_SESSION['auth_name'] . '<img src="./img/person.ico" alt="">'?>
+
             </font>
         </font>
     </a>

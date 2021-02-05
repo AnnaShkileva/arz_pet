@@ -24,6 +24,7 @@
 
                     <div class="alert alert-danger mt-2" id="errorBlock"></div>
                     <button type="button" id="auth_user" class="btn btn-success mt-5">Войти</button>
+                    <div><span>Забыли пароль?</span> <a href="">Восстановить по почте</a></div>
 
                 </form>
             </div>
@@ -49,7 +50,7 @@
                 dataType: 'html',
                 success: function(data) {
                     if (data == "true") {
-                        window.location.replace("./index.php");
+                        window.location.replace("./personal_account.php");
                     } else {
                         $('#errorBlock').show();
                         $('#errorBlock').text(data);
