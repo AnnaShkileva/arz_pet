@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -28,6 +29,11 @@
                     <button type="button" id="reg_user" class="btn btn-success mt-5">Зарегистрироваться</button>
 
                 </form>
+                <a class="btn btn-outline-primary" href="./authorization.php">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Я уже зарегистрирован</font>
+                    </font>
+                </a>
             </div>
             <?php require 'blocks/aside.php'?>
         </div>
@@ -52,9 +58,8 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    if (data == true) {
-                        $('#reg_user').text('Готово!');
-                        $('#errorBlock').hide();
+                    if (data == "true") {
+                        window.location.replace("./authorization.php");
                     } else {
                         $('#errorBlock').show();
                         $('#errorBlock').text(data);

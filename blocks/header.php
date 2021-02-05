@@ -9,6 +9,8 @@
     -->
     </nav>
     <a href="./index.php">На Главную</a>
+    <?php if(!(isset($_SESSION['auth']))):
+    ?>
     <a class="btn btn-outline-primary" href="./authorization.php">
         <font style="vertical-align: inherit;">
             <font style="vertical-align: inherit;">Войти</font>
@@ -19,4 +21,16 @@
             <font style="vertical-align: inherit;">Регистрация</font>
         </font>
     </a>
+    <?php else:
+    ?>
+    <a class="btn btn-outline-primary" href="./ajax/exit.php">
+        <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">
+                <?= $_SESSION['auth_name']?>
+            </font>
+        </font>
+    </a>
+    <?php
+    endif;
+    ?>
 </header>

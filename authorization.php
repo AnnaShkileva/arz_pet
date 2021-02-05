@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -48,8 +49,7 @@
                 dataType: 'html',
                 success: function(data) {
                     if (data == "true") {
-                        $('#auth_user').text('Готово!');
-                        $('#errorBlock').hide();
+                        window.location.replace("./index.php");
                     } else {
                         $('#errorBlock').show();
                         $('#errorBlock').text(data);

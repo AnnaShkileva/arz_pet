@@ -29,11 +29,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user = $query->fetch_array();
     $id = $user['id'];
 
-    if($id == 0)
+    if($id == 0){
         echo 'Неверный email или пароль!';
-    else{
-        setcookie('log', $id, time() + 3600 * 24 * 365);
+        exit();
+    }else{
+        session_start();
+        $_SESSION['auth'] ="yes_auth";
+        $_SESSION['auth_id'] = $id;
+        $_SESSION['auth_name'] = $user['name'];
+        $_SESSION['auth_email'] = $user['email'];
+        $_SESSION['auth_pass'] = $user['pass'];
         echo "true";
+        exit();
     };
 };
 ?>

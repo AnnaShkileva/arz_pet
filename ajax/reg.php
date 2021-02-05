@@ -29,8 +29,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $hash = "bI3v9";
     $pass = md5($pass . $hash);
     
-    $query = $mysqli->query("INSERT INTO `users` (`name`, `email`, `pass`) VALUES('" . $name . "', '" . $email . "', '" . $pass . "')") or die("Ошибка регистрации нового пользователя! Обратитесь к администраторую");    
-    echo true;
+    $query = $mysqli->query("SELECT * FROM `users` WHERE `email` = '". $email ."'") or die("Ошибка регистрации! Обратитесь к администратору.");    
+    
+    $user = $query->fetch_array();
+    $id = $user['id'];
+
+    if($id == 0){
+        $query = $mysqli->query("INSERT INTO `users` (`name`, `email`, `pass`) VALUES('" . $name . "', '" . $email . "', '" . $pass . "')") or die("Ошибка регистрации! Обратитесь к администратору.");    
+    echo "true";
+    }
+    else
+        echo "Пользователь с таким email уже существует!";
         
 };
 
