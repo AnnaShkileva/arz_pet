@@ -36,10 +36,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($id == 0){
         $query = $mysqli->query("INSERT INTO `users` (`name`, `email`, `pass`) VALUES('" . $name . "', '" . $email . "', '" . $pass . "')") or die("Ошибка регистрации! Обратитесь к администратору.");    
-    echo "true";
-    }
-    else
+        echo "true";
+        exit();
+    }else{
         echo "Пользователь с таким email уже существует!";
+        exit();
+    };
         
 };
 

@@ -18,8 +18,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     else if(preg_match("#^[a-z0-9\-_]+$/i#",$pass)|| strlen($pass) <=4)
             $error = 'Пароль должен состоять минимум из 5 латинских символов и цифр';
     if($error != ''){
-        echo $error;
-        exit();
+       
+        exit($error);
     }
 
     $hash = "bI3v9";
@@ -29,18 +29,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user = $query->fetch_array();
     $id = $user['id'];
 
-    if($id == 0){
-        echo 'Неверный email или пароль!';
-        exit();
-    }else{
+    if($id == 0)
+        exit('Неверный email или пароль!');
+    else{
         session_start();
+        
         $_SESSION['auth'] ="yes_auth";
         $_SESSION['auth_id'] = $id;
         $_SESSION['auth_name'] = $user['name'];
         $_SESSION['auth_email'] = $user['email'];
-        $_SESSION['auth_pass'] = $user['pass'];
-        echo "true";
-        exit();
+        
+        exit("true");
     };
 };
 ?>

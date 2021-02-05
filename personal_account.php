@@ -10,6 +10,7 @@ else:
     <meta charset="UTF-8">
     <title>Личный кабинет</title>
     <?php require 'blocks/head.php'?>
+    <link rel="stylesheet" href="./css/pers_acc.css">
 </head>
 
 <body>
@@ -29,26 +30,26 @@ else:
                     <h5>Изменение данных</h5>
                     <form>
                         <label for="username">Ваше имя</label>
-                        <input type="text" name="username" id="username" class="form-control">
+                        <input type="text" name="username" id="username" class="form-control" value="<?=$_SESSION['auth_name']?>">
 
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control" value="<?=$_SESSION['auth_email']?>">
 
                         <button type="button" id="save_data" class="btn btn-success mt-5">Сохранить</button>
                         <button type="button" id="cancel_edit_data" class="btn btn-success mt-5">Отмена</button>
                     </form>
                 </div>
-                <div id="edit_person_data">
+                <div id="edit_person_pass">
                     <h5>Изменение пароля</h5>
                     <form>
-                        <label for="username">Старый пароль</label>
+                        <label for="pass">Старый пароль</label>
                         <input type="password" name="pass" id="pass" class="form-control">
 
-                        <label for="new_pass_1">Новый пароль</label>
-                        <input type="password" name="new_pass_1" id="new_pass_1" class="form-control">
+                        <label for="new_pass">Новый пароль</label>
+                        <input type="password" name="new_pass" id="new_pass" class="form-control">
 
-                        <label for="new_pass_2">Повторите пароль</label>
-                        <input type="password" name="new_pass_2" id="new_pass_2" class="form-control">
+                        <label for="new_pass_replay">Повторите пароль</label>
+                        <input type="password" name="new_pass_replay" id="new_pass_replay" class="form-control">
 
                         <button type="button" id="save_pass" class="btn btn-success mt-5">Сохранить</button>
                         <button type="button" id="cancel_edit_pass" class="btn btn-success mt-5">Отмена</button>
@@ -62,6 +63,7 @@ else:
     </main>
 
     <?php require 'blocks/footer.php'?>
+    <script src="./script/pers_acc.js"></script>
 
 </body>
 
