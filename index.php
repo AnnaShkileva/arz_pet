@@ -18,14 +18,14 @@
                 <?php include "db_connect.php";
     //Потеряные животные
     
-    $query = $mysqli->query("SELECT * FROM `articles` ORDER BY 'id' ASC") or die("Ошибка авторизации! Обратитесь к администратору.");
+    $query = $mysqli->query("SELECT * FROM `articles`, `type_articles` WHERE `type_articles`.id = `articles`.type ORDER BY 'id' ASC") or die("Ошибка авторизации! Обратитесь к администратору.");
     $article_loss = $query->fetch_array();
     
     echo '<div>
                     <h4>Все объявления</h4>';
     
     do{
-        $type = $article_loss['type'];
+        $type = $article_loss['name'];
         $title = $article_loss['title'];
         $img = $article_loss['img'];
         $text = $article_loss['text'];
