@@ -16,16 +16,16 @@
             <div class="col-md-8">
 
                 <?php include "db_connect.php";
-    //Потеряные животные
     
-    $query = $mysqli->query("SELECT * FROM `articles`, `type_articles` WHERE `type_articles`.id = `articles`.type ORDER BY 'id' ASC") or die("Ошибка авторизации! Обратитесь к администратору.");
+    $query = $mysqli->query("SELECT * FROM `articles`, `type_articles`, `users` WHERE `type_articles`.id = `articles`.type_id AND `users`.id = `articles`.user_id ORDER BY `articles`.id ASC") or die("Ошибка авторизации! Обратитесь к администратору.");
     $article_loss = $query->fetch_array();
     
     echo '<div>
                     <h4>Все объявления</h4>';
     
     do{
-        $type = $article_loss['name'];
+        $user = $article_loss['name'];
+        $type = $article_loss['type_name'];
         $title = $article_loss['title'];
         $img = $article_loss['img'];
         $text = $article_loss['text'];
@@ -42,6 +42,7 @@
                     <img src="img/pet/'. $img .'" alt="">
                     <p>'. $text .'</p>
                     </div>
+                    <h6>'. $user .'</h6>
                     <div>'. $phone_one .'</div>'. $phone_two;
         
     }while($article_loss = $query->fetch_array());
